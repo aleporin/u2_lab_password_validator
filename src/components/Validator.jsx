@@ -8,7 +8,7 @@ const Validator = (props) => {
   
 const submit=(e)=>{
   e.preventDefault()
-  if (password === confirmPassword){
+  if (password === confirmPassword && password.length>7){
     setValid(true)
   }
 }
