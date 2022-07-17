@@ -39,6 +39,7 @@ const submit=(e)=>{
 
         <button type="submit">Sign Up</button>
         {valid ? <p className='valid'>Passwords match.</p>:<p className='invalid'> Passwords must match.</p>}
+        <button class="cancel">Cancel</button>
       </form>
     </div>
   )
