@@ -5,61 +5,40 @@ const Validator = (props) => {
   let[password,setPassword]=useState('')
   let[confirmPassword,setConfirmPassword]=useState('')
   let[valid,setValid]=useState('')
-  // let passwordMatch="Passwords must match!"
-  // let [match,setMatch]=useState('')
+  
+const submit=(e)=>{
+  e.preventDefault()
+  if (password === confirmPassword){
+    setValid(true)
+  }
+}
 
-  const handleChangeUsername = (event) => {
-    event.preventDefault()
-    console.log(event.currentTarget.value)
-    setUsername(event.currentTarget.value)
-  }
-  const handleChangePassword = (event) => {
-    event.preventDefault()
-    console.log(event.currentTarget.value)
-    setPassword(event.currentTarget.value)
-  }
-  const handleChangeConfirmPassword = (event) => {
-    event.preventDefault()
-    
-    setConfirmPassword(event.currentTarget.value)
-    
-    if(confirmPassword === password){
-      setValid('valid')
-    }
-    else
-    setValid('invalid')
-    
-  }
   
   
   
 
- 
   return (
     <div className="form">
       <h1>Sign Up</h1>
-      <form>
-        <input type="text" placeholder="Username" 
-        onChange={handleChangeUsername}
-        id="username" />
+      <form onSubmit={submit}>
+        <input type="text" placeholder="Username"
+        id="username" onChange={(e)=> setUsername(e.target.value)} />
         <label htmlFor="username">Username</label>
 
-        <input type="password" placeholder="Password" 
-        onChange={handleChangePassword}
-        id="password" />
+        <input type="password" placeholder="Password" id="password" onChange={(e)=> setPassword(e.target.value)}/> 
+        
         <label htmlFor="password">Password</label>
 
         <input
           type="password"
           placeholder="Confirm password"
           id="passwordConfirm"
-          onChange={handleChangeConfirmPassword}
-          value={confirmPassword}
+          onChange={(e)=> setConfirmPassword(e.target.value)}
         />
         <label htmlFor="passwordConfirm">Confirm password</label>
 
         <button type="submit">Sign Up</button>
-        <p className={props.valid} >Passwords must match.</p>
+        {valid ? <p className='valid'>Passwords match.</p>:<p className='invalid'> Passwords must match.</p>}
       </form>
     </div>
   )
